@@ -1,0 +1,130 @@
+s-configuration
+-------------------
+
+Sw1
+----
+en 
+config t
+hostname sw1
+vlan 10
+name it
+exit
+
+en 
+config t
+hostname sw1
+vlan 20
+name acct
+exit
+
+en 
+config t
+hostname sw1
+vlan 30
+name data
+exit
+
+int f0/3
+switchport mode access
+switchport access vlan 10
+
+int f0/4
+switchport mode access
+switchport access vlan 20
+
+int f0/5
+switchport mode access
+switchport access vlan 30
+
+int range f0/1-2
+switchport mode dynamic desirable
+
+sw2
+===
+
+en 
+config t
+hostname sw2
+vlan 10
+name it
+exit
+
+en 
+config t
+hostname sw2
+vlan 20
+name acct
+exit
+
+en 
+config t
+hostname sw2
+vlan 30
+name data
+exit
+
+
+int f0/3
+switchport mode access
+switchport access vlan 10
+
+int f0/4
+switchport mode access
+switchport access vlan 20
+
+int f0/5
+switchport mode access
+switchport access vlan 30
+
+int f0/1
+switchport mode trunk
+!
+
+sw3
+====
+
+en 
+config t
+hostname sw3
+vlan 10
+name it
+exit
+
+en 
+config t
+hostname sw3
+vlan 10
+name it
+exit
+
+en 
+config t
+hostname sw3
+vlan 20
+name acct
+exit
+
+en 
+config t
+hostname sw3
+vlan 30
+name data
+exit
+
+
+int f0/3
+switchport mode access
+switchport access vlan 10
+
+int f0/4
+switchport mode access
+switchport access vlan 20
+
+int f0/5
+switchport mode access
+switchport access vlan 30
+
+
+
+assign ip to end devices 
+ping vlans for verification
